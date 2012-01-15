@@ -74,8 +74,13 @@ class DataInterfaceSet(object):
 class DataInterface(object):
 	def __init__(self):
 		self._conn = sqlite3.connect("faceMaker.db")
+		
+		# This allows us to access rows by thier name
 		self._conn.row_factory = sqlite3.Row
+		# And ensure we are using ASCII representation, no need for UTF here
 		self._conn.text_factory = str
+		
+		# Cache availiable sets internally
 		self._setCache = {}
 		self._setCacheIsValid = False
 
@@ -89,6 +94,7 @@ class DataInterface(object):
 		c = self._conn.cursor()
 		with open('database.sql', 'r') as f:
 			buildUpQuery = f.read()
+		# Create tables if they don't already exist	
 		c.executescript(buildUpQuery)
 
 	def sets(self):

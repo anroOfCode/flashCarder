@@ -157,7 +157,7 @@ class FlashCarder(object):
 				print 'Invalid menu choice.'
 
 	def run(self):
-		print 'FaceMaker Initializing'
+		print 'FlashCarder Initializing'
 		self.mainMenu()
 
 if __name__ == "__main__":
